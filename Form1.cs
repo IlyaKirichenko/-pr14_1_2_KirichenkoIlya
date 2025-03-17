@@ -7,9 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 
-namespace Задание_2
+namespace Задание_3
 {
     public partial class Form1 : Form
     {
@@ -20,43 +19,19 @@ namespace Задание_2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string exp = textBox1.Text;
-            string resMessage = BalanceSkob(exp);
-            label1.Text = resMessage;
-            File.WriteAllText("t.txt", exp);
-        }
-        private string BalanceSkob(string exp)
-        {
-            int balance = 0;
-            for (int i = 0; i <exp.Length; i++)
+            int n = (int)numericUpDown1.Value;
+            Queue<int> queue = new Queue<int>();
+            for (int i = 1; i <= n; i++)
             {
-                if (exp[i] == '(')
-                {
-                    balance++;
-                }
-                else if (exp[i] == ')')
-                {
-                    balance--;
-                }
-                if (balance < 0)
-                {
-                    return $"Лишняя скобка ( в позиции : {i+1}";
-                }
+                queue.Enqueue(i);
             }
-            if (balance > 0)
-            {
-                return $"Лишняя скобка ) в позиции : {exp.Length}";
-            }
-            return "Скобки сбалансированы";
-        }
-       /* private string FixBalanceSkob(string exp)
-        {
-
-        }*/
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
+            string res = $"n = {n}\n";
+            res+= $"Размерность стека ={queue.Count}\n";
+            res += $"Верхний элемент стека = {queue.Peek()}\n";
+            res +=$"Содержимое стека = {string.Join(" ", queue)}\n";
+            queue.Clear();
+            res+=$"Новая размерность стека = {queue.Count}";
+            MessageBox.Show(res,"info");
         }
     }
 }
