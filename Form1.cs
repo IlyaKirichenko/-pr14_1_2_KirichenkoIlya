@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Задание_3
+namespace Задание_1
 {
     public partial class Form1 : Form
     {
@@ -16,22 +16,17 @@ namespace Задание_3
         {
             InitializeComponent();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             int n = (int)numericUpDown1.Value;
-            Queue<int> queue = new Queue<int>();
+            Stack<int> stack = new Stack<int>();
+            int newSize = stack.Count;
             for (int i = 1; i <= n; i++)
             {
-                queue.Enqueue(i);
+                stack.Push(i);
             }
-            string res = $"n = {n}\n";
-            res+= $"Размерность стека ={queue.Count}\n";
-            res += $"Верхний элемент стека = {queue.Peek()}\n";
-            res +=$"Содержимое стека = {string.Join(" ", queue)}\n";
-            queue.Clear();
-            res+=$"Новая размерность стека = {queue.Count}";
-            MessageBox.Show(res,"info");
+            int nachSize = stack.Count;
+            MessageBox.Show($"n = {n}\n Размерность стека = {nachSize}\n Верхний элемент стека = {stack.Peek()}\n Содержимое стека = {string.Join(" ",stack)}\n Новая размерность стека = {newSize} ");
         }
     }
 }
